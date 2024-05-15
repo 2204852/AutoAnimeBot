@@ -143,7 +143,7 @@ class Tools:
         return True, out
 
     async def compress(self, dl, out):
-        cmd = f'''{Var.FFMPEG} -i """{dl}""" -metadata "Encoded By"="https://github.com/kaif-00z/AutoAnimeBot/" -preset ultrafast -c:v libx265 -crf {Var.CRF} -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'''
+        cmd = f'''{Var.FFMPEG} -i """{dl}""" -metadata "ENCODED BY @THECIDANIME" -preset faster -c:v libx265 -crf {Var.CRF} -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'''
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -218,7 +218,7 @@ class Tools:
             ss, dd = await self.duration_s(filename)
             __ = filename.split(".mkv")[-2]
             out = __ + "_sample.mkv"
-            _ncmd = f'ffmpeg -i """{filename}""" -preset ultrafast -ss {ss} -to {dd} -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'
+            _ncmd = f'ffmpeg -i """{filename}""" -preset faster -ss {ss} -to {dd} -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'
             process = await asyncio.create_subprocess_shell(
                 _ncmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
             )
